@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * Just another test suite for interval treaps.
+ * @author Micah Mundy, Aaron Rees
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class IntervalTreapTest {
 
@@ -312,7 +316,7 @@ class IntervalTreapTest {
 		
 		//Begin deletion
 		while(it.size!=0) {
-			Node n = it.findLast();
+			Node n = getLast(it);
 			it.intervalDelete(n);
 			
 			checkIntevalTreap(it);
@@ -670,6 +674,19 @@ class IntervalTreapTest {
 		checkPriorities(it);
 		checkTreeStructure(it);
 		checkImax(it);
+	}
+	
+	/**
+	 * Finds the node containing the Interval in an IntervalTreap 
+	 * with the highest "low" parameter, assuming the treap is valid.
+	 * @param it the IntervalTreap in question
+	 * @return the rightmost child of <code>it</code>
+	 */
+	public Node getLast(IntervalTreap it) {
+		Node n = it.root;
+		while(n.right != null)
+			n = n.right;
+		return n;
 	}
 	
 
